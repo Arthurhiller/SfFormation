@@ -55,11 +55,6 @@ class Session
     private $detailProgramme;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="sessions")
-     */
-    private $users;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Programme::class, inversedBy="sessions")
      */
     private $programmes;
@@ -155,33 +150,6 @@ class Session
     public function setDetailProgramme(string $detailProgramme): self
     {
         $this->detailProgramme = $detailProgramme;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addSession($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            $user->removeSession($this);
-        }
 
         return $this;
     }
