@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ModuleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,6 +29,16 @@ class Module
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Programme::class, inversedBy="modules")
+     */
+    private $programmes;
+
+    public function __construct()
+    {
+        $this->programmes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -53,6 +65,30 @@ class Module
     public function setCategorie(?Categorie $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Programme>
+     */
+    public function getProgrammes(): Collection
+    {
+        return $this->programmes;
+    }
+
+    public function addProgramme(Programme $programme): self
+    {
+        if (!$this->programmes->contains($programme)) {
+            $this->programmes[] = $programme;
+        }
+
+        return $this;
+    }
+
+    public function removeProgramme(Programme $programme): self
+    {
+        $this->programmes->removeElement($programme);
 
         return $this;
     }

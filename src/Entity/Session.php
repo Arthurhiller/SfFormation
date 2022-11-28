@@ -59,9 +59,15 @@ class Session
      */
     private $users;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Programme::class, inversedBy="sessions")
+     */
+    private $programmes;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->programmes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -176,6 +182,30 @@ class Session
         if ($this->users->removeElement($user)) {
             $user->removeSession($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Programme>
+     */
+    public function getProgrammes(): Collection
+    {
+        return $this->programmes;
+    }
+
+    public function addProgramme(Programme $programme): self
+    {
+        if (!$this->programmes->contains($programme)) {
+            $this->programmes[] = $programme;
+        }
+
+        return $this;
+    }
+
+    public function removeProgramme(Programme $programme): self
+    {
+        $this->programmes->removeElement($programme);
 
         return $this;
     }
