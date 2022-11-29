@@ -94,7 +94,8 @@ class Stagiaire
     }
 
     public function getDateNaissance(): ?\DateTimeInterface
-    {
+    {   
+        
         return $this->dateNaissance;
     }
 
@@ -175,5 +176,10 @@ class Stagiaire
         $this->sessions->removeElement($session);
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getNom()." ".$this->getPrenom();
     }
 }

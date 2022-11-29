@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste de tous les stagiaires{% endblock %}
+
+{% block body %}
+
+    <h1>Stagiaire {{ stagiaire }}</h1>
+    
+    <p>La date de naissance est : {{ stagiaire.dateNaissance | date('d-m-Y')}}</p>
+    <p>Le sexe du stagiaire est : {{ stagiaire.sexe }}</p>
+    <p>La ville du stagiaire est : {{ stagiaire.ville }}</p>
+    <p>L'adresse email du stagiaire est : {{ stagiaire.courriel }}</p>
+    <p>Le numéro de téléphone est : {{ stagiaire.numeroTelephone }}</p>
+
+{% endblock %}
