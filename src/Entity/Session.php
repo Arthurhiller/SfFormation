@@ -59,10 +59,16 @@ class Session
      */
     private $programmes;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Stagiaire::class, mappedBy="sessions")
+     */
+    private $stagiaires;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->programmes = new ArrayCollection();
+        $this->stagiaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -174,6 +180,33 @@ class Session
     public function removeProgramme(Programme $programme): self
     {
         $this->programmes->removeElement($programme);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Stagiaire>
+     */
+    public function getStagiaires(): Collection
+    {
+        return $this->stagiaires;
+    }
+
+    public function addStagiaire(Stagiaire $stagiaire): self
+    {
+        if (!$this->stagiaires->contains($stagiaire)) {
+            $this->stagiaires[] = $stagiaire;
+            $stagiaire->addSession($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStagiaire(Stagiaire $stagiaire): self
+    {
+        if ($this->stagiaires->removeElement($stagiaire)) {
+            $stagiaire->removeSession($this);
+        }
 
         return $this;
     }
