@@ -4,6 +4,7 @@
 
 {% block body %}
     {% for categorie in categories %}
-        {{ categorie.intitule }} <br>
+        {{ categorie.intitule }}
+        <a href="{{ path('show_categorie', {'id': categorie.id}) }}">Détail</a> <br>
     {% endfor %}
 {% endblock %}

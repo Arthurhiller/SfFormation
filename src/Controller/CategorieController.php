@@ -20,4 +20,15 @@ class CategorieController extends AbstractController
             'categories' => $categorie,
         ]);
     }
+
+    /**
+     * @Route("/categorie/{id}/show", name="show_categorie")
+     */
+    public function show(ManagerRegistry $doctrine, Categorie $categorie)
+    {
+        $categorie = $doctrine->getRepository(Categorie::class)->find($categorie->getId());
+        return $this->render('categorie/show.html.twig', [
+            'categorie' => $categorie
+        ]);
+    }
 }
