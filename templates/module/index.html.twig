@@ -4,9 +4,10 @@
 
 {% block body %}
     <h1>Liste des modules</h1>
+    <a href="{{ path('add_module') }}">Ajouter un module</a> <br>
     {% for module in modules %}
         {{ module.intitule }}
-        
-        {{ module.categorie.intitule }} <br>
+        {{ module.categorie.intitule }}
+        <a href="{{ path('show_module', {'id': module.id}) }}">Détails</a> <br>
     {% endfor %}
 {% endblock %}

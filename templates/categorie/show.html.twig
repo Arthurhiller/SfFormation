@@ -4,7 +4,9 @@
 
 {% block body %}
     <h1>Categorie : {{ categorie}}</h1>
-
+    Le nom de la catégorie : {{ categorie }}
+    <a href="{{ path('edit_categorie', {'id': categorie.id}) }}">Edité</a>
+    <a href="{{ path('delete_categorie', {'id': categorie.id}) }}">Supprimer</a> <br>
     <p></p>
 
 {% endblock %}

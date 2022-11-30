@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>Liste de tous les stagiaires</h1>
+    <a href="{{ path('add_stagiaire') }}">Ajouter un stagiaire</a> <br>
     {% for stagiaire in stagiaires %}
         {{ stagiaire.nom }} <br>
         {{ stagiaire.prenom }} <br>

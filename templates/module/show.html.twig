@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ModuleController!{% endblock %}
+
+{% block body %}
+    <h1>Le module : {{ module }}</h1>
+    <p>Le nom du module : {{ module }}</p>
+    <p>La catégorie du module : {{ module.categorie.intitule }}</p>
+    <a href="{{ path('edit_module', {'id': module.id}) }}">Edité</a>
+    <a href="{{ path('delete_module', {'id': module.id}) }}">Supprimer</a>
+{% endblock %}
