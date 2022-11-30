@@ -40,16 +40,6 @@ class Session
     private $nbPlace;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $nbPlaceReserve;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $nbPlaceDisponible;
-
-    /**
      * @ORM\Column(type="text")
      */
     private $detailProgramme;
@@ -124,30 +114,6 @@ class Session
         return $this;
     }
 
-    public function getNbPlaceReserve(): ?int
-    {
-        return $this->nbPlaceReserve;
-    }
-
-    public function setNbPlaceReserve(?int $nbPlaceReserve): self
-    {
-        $this->nbPlaceReserve = $nbPlaceReserve;
-
-        return $this;
-    }
-
-    public function getNbPlaceDisponible(): ?int
-    {
-        return $this->nbPlaceDisponible;
-    }
-
-    public function setNbPlaceDisponible(int $nbPlaceDisponible): self
-    {
-        $this->nbPlaceDisponible = $nbPlaceDisponible;
-
-        return $this;
-    }
-
     public function getDetailProgramme(): ?string
     {
         return $this->detailProgramme;
@@ -209,5 +175,20 @@ class Session
         }
 
         return $this;
+    }
+
+    public function getReservePlace()
+    {
+
+    }
+
+    public function getPlaceDisponible()
+    {
+        
+    }
+
+    public function __toString()
+    {
+        return $this->getIntitule();
     }
 }
