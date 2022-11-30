@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>Listes des sessions</h1>
+    <a href="{{ path('add_session')}}">Ajouter une session</a>
     {% for session in sessions %}
         <p>L'intitulé : {{ session.intitule }}</p>
         <p>Date de début : {{ session.dateDebut | date('d-m-Y')}}</p>

@@ -3,8 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Module;
-
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -20,7 +20,7 @@ class ModuleFormType extends AbstractType
                 'attr' => ['class' => 'form-input']
             ])
             ->add('categorie')
-            ->add('programmes')
+            ->add('programmes', CollectionType::class)
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'form-btn']
             ])

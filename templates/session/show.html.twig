@@ -8,7 +8,11 @@
     <p>Date de début : {{ session.dateDebut | date('d-m-Y')}}</p>
     <p>Date de fin : {{ session.dateFin | date('d-m-Y')}}</p>
     <p>Nombre de places : {{ session.nbPlace }}</p>
-    <p>Nombre de places réservées {{ session.nbPlaceReserve }}</p>
-    <p>Nombre de places disponible : {{ session.nbPlaceDisponible }}</p>
-    <p>Détail de la session : {{ session.detailProgramme }}</p> <br>
+    <p>Détail de la session : {{ session.detailProgramme }}</p>
+    {# Boucle sur la collection de session.stagiaires #}
+    {% for stagiaire in session.stagiaires %}
+        {# Affiche les valeurs de la function toString de stagiaire #}
+        {{ stagiaire }} <br>
+    {% endfor %}
+    <a href={{ path('edit_session', {'id': session.id}) }}>Edité</a>
 {% endblock %}

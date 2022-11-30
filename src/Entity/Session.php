@@ -177,16 +177,6 @@ class Session
         return $this;
     }
 
-    public function getReservePlace()
-    {
-
-    }
-
-    public function getPlaceDisponible()
-    {
-        
-    }
-
     public function __toString()
     {
         return $this->getIntitule();

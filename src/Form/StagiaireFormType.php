@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Stagiaire;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -26,7 +27,8 @@ class StagiaireFormType extends AbstractType
             ])
             ->add('dateNaissance', DateType::class, [
                 'required' => true,
-                'attr' => ['class' => 'form-input']
+                'attr' => ['class' => 'form-input'],
+                'widget' => 'single_text'
             ])
             ->add('sexe', TextType::class, [
                 'required' => true,
@@ -44,7 +46,7 @@ class StagiaireFormType extends AbstractType
                 'required' => true,
                 'attr' => ['class' => 'form-input']
             ])
-            ->add('sessions')
+            ->add('sessions', CollectionType::class)
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'form-btn']
             ])
