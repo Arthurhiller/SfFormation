@@ -4,5 +4,11 @@
 
 {% block body %}
     <h1>Ajouter une session</h1>
-    {{ form(formAddSession) }}
+    {{ form_start(formAddSession) }}
+        {{ form_row(formAddSession.intitule) }}
+        {{ form_row(formAddSession.dateDebut) }}
+        {{ form_row(formAddSession.dateFin) }}
+        {{ form_row(formAddSession.nbPlace) }}
+        {{ form_row(formAddSession.detailProgramme) }}
+    {{ form_end(formAddSession) }}
 {% endblock %}

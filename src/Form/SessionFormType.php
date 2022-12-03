@@ -35,8 +35,6 @@ class SessionFormType extends AbstractType
             ->add('detailProgramme', TextareaType::class, [
                 'required' => true
             ])
-            ->add('programmes', CollectionType::class)
-            ->add('stagiaires', CollectionType::class)
             ->add('submit', SubmitType::class)
         ;
     }

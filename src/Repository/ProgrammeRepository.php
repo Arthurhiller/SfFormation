@@ -39,6 +39,26 @@ class ProgrammeRepository extends ServiceEntityRepository
         }
     }
 
+    // /**
+    //  * @return Programme[]
+    //  */
+    // public function findbyModuleSession(): array
+    // {
+    //     $entityManager = $this->getEntityManager();
+
+    //     $query = $entityManager->createQuery(
+    //         'SELECT p, m, s
+    //         FROM App\Entity\programme p
+    //         INNER JOIN  m.module_id
+    //         ON
+    //         INNER JOIN s.session_id
+    //         ON'       
+    //     );
+
+    //     return $query->getOneOrNullResult();
+    // }
+
+
 //    /**
 //     * @return Programme[] Returns an array of Programme objects
 //     */
