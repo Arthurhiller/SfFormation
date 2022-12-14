@@ -16,10 +16,16 @@ class HomeController extends AbstractController
      */
     public function index(ManagerRegistry $doctrine): Response
     {
+        $session = new Session();
+
         $categorie = $doctrine->getRepository(Categorie::class)->findBy([], ["intitule" => "DESC"]);
+        $nbPlaceReserver = $session->getNbPlaceReserver();
+        $nbPlaceDisponible = $session->getNbPlaceDisponible();
         $session = $doctrine->getRepository(Session::class)->findBy([], ["dateDebut" => "ASC"]);
         return $this->render('home/index.html.twig', [
             'homeSessions' => $session,
+            'nbPlaceReserve' => $nbPlaceReserver,
+            'nbPlaceDisponible' => $nbPlaceDisponible,
             'homeCategories' => $categorie
         ]);
     }

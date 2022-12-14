@@ -9,6 +9,8 @@
     <p>Date de début : {{ session.dateDebut | date('d-m-Y')}}</p>
     <p>Date de fin : {{ session.dateFin | date('d-m-Y')}}</p>
     <p>Nombre de places : {{ session.nbPlace }}</p>
+    <p>Nb Place reserver : {{ session.nbPlaceReserver }}</p>
+    <p>Nb Place disponible {{ session.nbPlaceDisponible }}</p>
     <p>Détail de la session : {{ session.detailProgramme }}</p>
     {# <a href={{ path('edit_session', {'id': session.id}) }}>Edité</a> #}
 </section>

@@ -178,6 +178,25 @@ class Session
         return $this;
     }
 
+    public function getNbPlaceReserver() 
+    {
+        $nbPlaceReserver = 0;
+        // Parcours le ArrayCollection de stagiaires
+        foreach($this->getStagiaires() as $stagiaire) {
+            $stagiaires[] = $stagiaire->getNom();
+            $nbPlaceReserver = count($stagiaires);
+
+        }
+        return $nbPlaceReserver;
+    }
+
+    public function getNbPlaceDisponible()
+    {
+        $nbPlace = $this->getNbPlace();
+        $nbPlaceReserver = $this->getNbPlaceReserver();
+        $nbPlaceDisponible = $nbPlace - $nbPlaceReserver;
+        return $nbPlaceDisponible;
+    }
 
     public function __toString()
     {

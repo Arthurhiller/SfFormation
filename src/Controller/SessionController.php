@@ -66,7 +66,8 @@ class SessionController extends AbstractController
      */
     public function show(ManagerRegistry $doctrine, Session $session, SessionRepository $sr): Response
     {
-        // $moduleProgramme = $sr->findProgrammeModule($session->getId());
+        $nbPlaceReserver = $session->getNbPlaceReserver();
+        $nbPlaceDisponible = $session->getNbPlaceDisponible();
         $programmes = $sr->findProgrammes($session->getId());
         $inscrits = $sr->findInscrit($session->getId());
         $nonInscrits = $sr->findNonInscrits($session->getId());
@@ -76,6 +77,8 @@ class SessionController extends AbstractController
             'nonInscrits' => $nonInscrits,
             'inscrits' => $inscrits,
             'programmes' => $programmes,
+            'nbPlaceReserver' => $nbPlaceReserver,
+            'nbPlaceDisponible' => $nbPlaceDisponible
             // 'modulesProgramme' => $moduleProgramme
         ]);
 
@@ -177,4 +180,6 @@ class SessionController extends AbstractController
     //         'id' => $session->getId()
     //     ]);
     // }
+
+
 }

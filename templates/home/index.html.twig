@@ -17,7 +17,7 @@
             <table class="session-table">
                 <thead>
                     <tr>
-                        <th colspan="6">
+                        <th colspan="7">
                             <p>Liste des sessions</p>
                         </th>
                     </tr>
@@ -28,6 +28,8 @@
                         <th>Date de début</th>
                         <th>Date de fin</th>
                         <th>Nombre de places</th>
+                        <th>Nombre de place réservé</th>
+                        <th>Nombre de place disponible</th>
                         <th>Description</th>
                     </tr>
                     {% for session in homeSessions %}
@@ -36,6 +38,8 @@
                         <td>{{ session.dateDebut | date('d-m-Y')}}</td>
                         <td>{{ session.dateFin | date('d-m-Y')}}</td>
                         <td>{{ session.nbPlace }}</td>
+                        <td>{{ session.nbPlaceReserver }}</td>
+                        <td>{{ session.nbPlaceDisponible }}</td>
                         <td>{{ session.detailProgramme }}</td>
                     </tr>
                     {% endfor %}
