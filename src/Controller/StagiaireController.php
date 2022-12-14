@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Session;
 use App\Entity\Stagiaire;
 use App\Form\StagiaireFormType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -27,8 +28,10 @@ class StagiaireController extends AbstractController
      * @Route("/stagiaire/add", name="add_stagiaire")
      * @Route("/stagiaire/{id}/edit", name="edit_stagiaire")
      */
-    public function add(ManagerRegistry $doctrine, Stagiaire $stagiaire = null, Request $request): Response
+    public function add(ManagerRegistry $doctrine, Stagiaire $stagiaire = null,Session $session , Request $request): Response
     {
+        
+
         if(!$stagiaire) {
 
             $stagiaire = new Stagiaire();
@@ -42,7 +45,10 @@ class StagiaireController extends AbstractController
 
             $stagiaire = $form->getData();
 
+
             $entityManager = $doctrine->getManager();
+
+            $stagiaire->addSession($session);
 
             $entityManager->persist($stagiaire);
 

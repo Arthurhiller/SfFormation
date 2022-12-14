@@ -2,6 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
@@ -11,26 +13,26 @@
     </head>
     <body>
         <header>
-            <nav>
-                <ul>
+            <nav class="navbar">
+                <ul class="navbar-ul">
                 {% if app.user %}
-                    <li><a href="{{ path('app_home') }}">Acceuil</a></li>
-                    <li><a href="{{ path('app_session') }}">Sessions</a></li>
-                    <li><a href="{{ path('app_categorie') }}">Catégories</a></li>
-                    <li><a href="{{ path('app_module') }}">Modules</a></li>
-                    <li><a href="{{ path('app_stagiaire') }}">Stagiaires</a></li>
+                    <li class="navbar-link"><a href="{{ path('app_home') }}">Acceuil</a></li>
+                    <li class="navbar-link"><a href="{{ path('app_session') }}">Sessions</a></li>
+                    <li class="navbar-link"><a href="{{ path('app_categorie') }}">Catégories</a></li>
+                    <li class="navbar-link"><a href="{{ path('app_module') }}">Modules</a></li>
+                    <li class="navbar-link"><a href="{{ path('app_stagiaire') }}">Stagiaires</a></li>
                     {% if is_granted("ROLE_ADMIN") %}
-                        <li><a href="">Panel administrateur</a></li>
+                        <li class="navbar-link"><a href="">Panel administrateur</a></li>
                     {% endif %}
-                    <li><a href="{{ path('app_logout') }}">Se deconnecter</a></li> 
+                    <li class="navbar-link"><a href="{{ path('app_logout') }}">Se deconnecter</a></li> 
                 {% else %}
-                    <li><a href="{{ path('app_home') }}">Acceuil</a></li>
-                    <li><a href="{{ path('app_session') }}">Sessions</a></li>
-                    <li><a href="{{ path('app_categorie') }}">Catégories</a></li>
-                    <li><a href="{{ path('app_module') }}">Modules</a></li>
-                    <li><a href="{{ path('app_stagiaire') }}">Stagiaires</a></li>
-                    <li><a href="{{ path('app_programme') }}">Programmes</a></li>
-                    <li><a href="{{ path('app_login') }}">Se connecter</a></li>                    
+                    <li class="navbar-link"><a href="{{ path('app_home') }}">Acceuil</a></li>
+                    <li class="navbar-link"><a href="{{ path('app_session') }}">Sessions</a></li>
+                    <li class="navbar-link"><a href="{{ path('app_categorie') }}">Catégories</a></li>
+                    <li class="navbar-link"><a href="{{ path('app_module') }}">Modules</a></li>
+                    <li class="navbar-link"><a href="{{ path('app_stagiaire') }}">Stagiaires</a></li>
+                    <li class="navbar-link"><a href="{{ path('app_programme') }}">Programmes</a></li>
+                    <li class="navbar-link"><a href="{{ path('app_login') }}">Se connecter</a></li>                    
                 {% endif %}
 
                 </ul>
@@ -39,8 +41,11 @@
         {% block body %}
         
         {% endblock %}
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         {% block javascripts %}
             <script src="{{ asset('js/script.js') }}"></script>
+            <script src="{{ asset('js/gsf.js') }}"></script>
         {% endblock %}
     </body>
 </html>
+

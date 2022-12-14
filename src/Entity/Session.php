@@ -45,12 +45,13 @@ class Session
     private $detailProgramme;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Programme::class, inversedBy="sessions")
+     * @ORM\ManyToMany(targetEntity=Programme::class, inversedBy="sessions", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\OrderBy({"module" = "ASC"})
      */
     private $programmes;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Stagiaire::class, mappedBy="sessions")
+     * @ORM\ManyToMany(targetEntity=Stagiaire::class, mappedBy="sessions",)
      */
     private $stagiaires;
 

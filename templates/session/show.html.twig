@@ -3,16 +3,109 @@
 {% block title %}Listes d'une session{% endblock %}
 
 {% block body %}
+<section>
     <h1>Session : {{ session }}</h1>
     <p>L'intitulé : {{ session.intitule }}</p>
     <p>Date de début : {{ session.dateDebut | date('d-m-Y')}}</p>
     <p>Date de fin : {{ session.dateFin | date('d-m-Y')}}</p>
     <p>Nombre de places : {{ session.nbPlace }}</p>
     <p>Détail de la session : {{ session.detailProgramme }}</p>
-    {# Boucle sur la collection de session.stagiaires #}
-    {% for stagiaire in session.stagiaires %}
-        {# Affiche les valeurs de la function toString de stagiaire #}
-        {{ stagiaire }} <br>
-    {% endfor %}
-    <a href={{ path('edit_session', {'id': session.id}) }}>Edité</a>
+    {# <a href={{ path('edit_session', {'id': session.id}) }}>Edité</a> #}
+</section>
+{# Boucle sur la collection de nonInscrit #}
+<section>
+    <h2>Programmes</h2>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">Liste des programmes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Modules</th>
+                <th>Nombres de jours</th>
+                {# <th>Action</th> #}
+            </tr>
+            {% for programme in programmes %}
+            <tr>
+                {% for module in programme.modules %}
+                <td>{{ module.intitule }}</td>
+                {% endfor %}
+                <td>{{ programme.nbJour }}</td>
+                {# <td><a href="{{ path('remove_programme_session', {'idSe': session.id, 'idPro': programme.id}) }}">Supprimer</a></td> #}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {# {{ dump(programmes) }} #}
+    {# <table>
+        <thead>
+            <tr>
+                <td>Liste des programmes</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Module</th>
+                <th>Nombre de jours</th>
+                <th>Action</th>
+            </tr>
+            {% for module in modulesProgramme %}
+            <tr>
+                <td>{{ module.intitule }}</td>
+                {% for programme in module.programmes %}
+                <td>{{ programme.nbJour }}</td>
+                <td><a href="{{ path('remove_programme_session', {'idSe': session.id, 'idPro': programme.id}) }}">Supprier</a></td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table> #}
+</section>
+<section>
+    <h2>Stagiaires</h2>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">
+                    Liste des stagiaires inscrient
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Stagiaire</th>
+                <th>Désinscrire</th>
+            </tr>
+            {% for stagiaire in inscrits %}
+            <tr>
+                <td>{{ stagiaire.nom }} {{ stagiaire.prenom }}</td>
+                <td><a href="{{ path('remove_stagiaire_session', {'idSe': session.id, 'idSt': stagiaire.id}) }}">Supprier</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">
+                    Liste des stagiaire non inscrient
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Stagiaire</th>
+                <th>Inscrire</th>
+            </tr>
+            {% for stagiaire in nonInscrits %}
+            <tr>
+                <td>{{ stagiaire.nom }} {{ stagiaire.prenom }}</td>
+                <td><a href="{{ path('add_stagiaire_session', {'idSe': session.id, 'idSt': stagiaire.id}) }}">Ajouter</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
 {% endblock %}

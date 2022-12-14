@@ -3,19 +3,14 @@
 {% block title %}Listes des programmes{% endblock %}
 
 {% block body %}
-    
-    <h1>Liste des programmes</h1>
-
-    <a href="path{{ path('add_programme') }}">Ajouter un programme</a><br>
-    
-    {% for programme in programmes %}
+    <h1>Détail du programme</h1>
         <p>Le programme dure : {{ programme.nbJour }} jours</p>
         {% for module in programme.modules %}
             <p>Le programme appartient au module : {{ module }}</p>
         {% endfor %}
         {% for session in programme.sessions %}
-            <p>Le programme est rataché à la session : {{ session }}</p>
+            <p>Le programme est rataché à la session : {{ session }}</p> <br>
         {% endfor %}
-        <a href="{{ path('show_programme', {'id': programme.id}) }}">Détail</a> <br>
-    {% endfor %}
+        <a href="{{ path('edit_programme', {'id': programme.id}) }}">Edité</a>
+        <a href="{{ path('delete_programme', {'id': programme.id}) }}">Supprimer</a>
 {% endblock %}

@@ -2,4 +2,101 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    list-style: none;
+    text-decoration: none;
+
+}
+
+body {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+}
+
+header {
+    width: 100%;
+    padding: 18px 100px;
+    background-color: rgb(0, 0, 0);
+}
+
+.navbar {
+    width: 100%;
+}
+
+.navbar-ul {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-link {
+    padding: 8px 17px;
+}
+
+.navbar-link a {
+    color: azure;
+}
+
+.navbar-link a:hover {
+    color: rgb(198, 151, 73)
+}
+
+.navbar-link:hover {
+    background-color: rgb(40, 42, 58);
+    border-radius: 10%;
+    transition: 0.5s;
+}
+
+h2 {
+    text-align: center;
+    color: rgb(115, 95, 50);
+    padding-bottom: 20px;
+}
+
+main {
+    width: 100%;
+    
+}
+section {
+    height: auto;
+    padding: 50px 100px;
+    width: 100%;
+    background-color: rgb(40, 42, 58);
+}
+
+.categorie-grid {
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 50px;
+    grid-row-gap: 50px;
+    text-align: center;
+
+}
+
+.grid {
+    border: 1px solid;
+    height: 25px;
+    border-radius: 15px;
+}
+
+.session-table {
+    width: 100%;
+    color: rgb(251, 209, 153);
+}
+
+.session-table th, td {
+
+    border: 1px solid;
+}
+
+.session-table th {
+
+    height: 70px;
+}
+
+.session-table td {
+    text-align: center;
+    height: 30px;
 }

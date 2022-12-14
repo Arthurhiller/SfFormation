@@ -30,10 +30,14 @@ class ProgrammeController extends AbstractController
 
     /**
      * @Route("/programme/add", name="add_programme")
+     * @Route("/programme/{id}/edit", name="edit_programme")
      */
     public function add(ManagerRegistry $doctrine, Programme $programme = null, Request $request): Response
     {
-        
+        if(!$programme) {
+
+            $programme = new Programme();
+        }
         
         $form = $this->createForm(ProgrammeFormType::class, $programme);
 
@@ -42,7 +46,7 @@ class ProgrammeController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
 
             $programme = $form->getData();
-
+            
             $entityManager = $doctrine->getManager();
 
             $entityManager->persist($programme);
@@ -53,9 +57,34 @@ class ProgrammeController extends AbstractController
         }
 
         return $this->render('programme/add.html.twig', [
-            'formAddProgramme' => $form->createView()
+            'formAddProgramme' => $form->createView(),
+            'edit' => $programme->getId()
         ]);
 
     }
 
+    /**
+     * @Route("programme/{id}/show", name="show_programme")
+     */
+    public function show(ManagerRegistry $doctrine, Programme $programme): Response
+    {
+        $programme = $doctrine->getRepository(Programme::class)->find($programme->getId());
+        return $this->render('programme/show.html.twig', [
+            'programme' => $programme
+        ]);
+    }
+
+    /**
+     * @Route("programme/{id}/delete", name="delete_programme")
+     */
+    public function delete(ManagerRegistry $doctrine, Programme $programme): Response
+    {
+        $entityManager = $doctrine->getManager();
+
+        $entityManager->remove($programme);
+
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_programme');
+    }
 }

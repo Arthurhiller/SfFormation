@@ -2,15 +2,17 @@
 
 namespace App\Form;
 
+use App\Entity\Session;
 use App\Entity\Stagiaire;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class StagiaireFormType extends AbstractType
 {
@@ -46,7 +48,15 @@ class StagiaireFormType extends AbstractType
                 'required' => true,
                 'attr' => ['class' => 'form-input']
             ])
-            ->add('sessions', CollectionType::class)
+            ->add('sessions', EntityType::class, [
+                // Permet d'ignorer le champ lors de l'écriture ou lecture dans l'object.
+                'mapped' => false,
+                // Indique à quel classe 'session fait référence
+                'class' => Session::class,
+                // Permet de choisir la valeur de la classe Session que je souhaite afficher (ici 'intitule')
+                'choice_label' => 'intitule',
+                'required' => false
+            ])
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'form-btn']
             ])

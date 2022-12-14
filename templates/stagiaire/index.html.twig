@@ -3,16 +3,44 @@
 {% block title %}Liste de tous les stagiaires{% endblock %}
 
 {% block body %}
+<section>
     <h1>Liste de tous les stagiaires</h1>
-    <a href="{{ path('add_stagiaire') }}">Ajouter un stagiaire</a> <br>
-    {% for stagiaire in stagiaires %}
-        {{ stagiaire.nom }} <br>
-        {{ stagiaire.prenom }} <br>
-        {{ stagiaire.dateNaissance | date('d-m-Y') }} <br>
-        {{ stagiaire.sexe }} <br>
-        {{ stagiaire.ville }} <br>
-        {{ stagiaire.courriel }} <br>
-        {{ stagiaire.NumeroTelephone }} <br>
-        <a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">Détail</a> <br>
-    {% endfor %}
+    <table>
+        <thead>
+            <tr>
+                <th colspan="8"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Date de naissance</th>
+                <th>Sexe</th>
+                <th>Ville</th>
+                <th>Courriel</th>
+                <th>Numéro de téléphone</th>
+                <th>Sessions</th>
+                <th>Détail</th>
+            </tr>
+            {% for stagiaire in stagiaires %}
+            <tr>
+                <td>{{ stagiaire.nom }}</td>
+                <td>{{ stagiaire.prenom }}</td>
+                <td>{{ stagiaire.dateNaissance | date('d-m-Y') }}</td>
+                <td>{{ stagiaire.sexe }}</td>
+                <td>{{ stagiaire.ville }}</td>
+                <td>{{ stagiaire.courriel }}</td>
+                <td>{{ stagiaire.NumeroTelephone }}</td>
+                {# Affiche les sessions auquel le stagiaire à participé #}
+                {# TODO : Si pas de session alors afficher "aucune" #}
+                {% for session in stagiaire.sessions %}
+                <td>{{ session }}</td>
+                {% endfor %}
+                <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">Détail</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
 {% endblock %}

@@ -3,10 +3,12 @@
 {% block title %}Liste des catégories{% endblock %}
 
 {% block body %}
-    <h1>Liste des catégories</h1>
-    <a href="{{ path('add_categorie') }}">Ajouter une categorie</a> <br>
-    {% for categorie in categories %}
-        {{ categorie.intitule }}
-        <a href="{{ path('show_categorie', {'id': categorie.id}) }}">Détail</a> <br>
-    {% endfor %}
+    <section class="categorie">
+        <h1 class="title-categorie">Liste des catégories</h1>
+        <a href="{{ path('add_categorie') }}">Ajouter une categorie</a> <br>
+        {% for categorie in categories %}
+            {{ categorie.intitule }}
+            <a href="{{ path('show_categorie', {'id': categorie.id}) }}">Détail</a> <br>
+        {% endfor %}
+    </section>
 {% endblock %}
